@@ -1,0 +1,1 @@
+//Declares the Recipe class: used for recipe objects

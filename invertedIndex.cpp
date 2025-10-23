@@ -1,0 +1,1 @@
+//Inverted Index implementation; used for Hash Map and Trie

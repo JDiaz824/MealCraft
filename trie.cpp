@@ -1,1 +1,0 @@
-//Trie-based Inverted Index data structure, using polymorphism

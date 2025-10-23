@@ -1,1 +1,0 @@
-//Hash map-based Inverted Index data structure, using polymorphism

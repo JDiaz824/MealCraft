@@ -10,11 +10,11 @@ class Recipe{
 private:
     int recipeNum;
     string title;
-    vector<string> ingredientsExact;
+    vector<string> ingredientsExact; // numbers of each ingredient (ex. 2 eggs)
     vector<string> instructions;
     string linkToRecipe;
     string source;
-    vector<string> ingredients;
+    vector<string> ingredients; // raw ingredients (ex. eggs)
 
 public:
     Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linktoRecipe, string source, vector<string> ingredients);

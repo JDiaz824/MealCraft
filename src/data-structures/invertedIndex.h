@@ -4,14 +4,14 @@
 
 #include <vector>
 #include <string>
-#include "src\recipe.h"
+#include "..\recipe.h"
 
 using namespace std;
 
 class invertedIndex{
 public:
-    virtual ~invertedIndex();
+    virtual ~invertedIndex(){};
     virtual void buildIndex(vector<Recipe>& recipes) = 0;
-    virtual vector<int> findRecipes(vector<string>& ingredients) = 0;
+    virtual vector<int> findRecipes(const vector<string>& ingredients) = 0;
     virtual string getIndexType() const = 0;
 };

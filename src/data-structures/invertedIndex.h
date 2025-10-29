@@ -1,1 +1,17 @@
-//Inverted Index implementation; used for Hash Map and Trie
+//Inverted Index Interface implementation; used for Hash Map and Trie
+
+#pragma once
+
+#include <vector>
+#include <string>
+#include "src\recipe.h"
+
+using namespace std;
+
+class invertedIndex{
+public:
+    virtual ~invertedIndex();
+    virtual void buildIndex(vector<Recipe>& recipes) = 0;
+    virtual vector<int> findRecipes(vector<string>& ingredients) = 0;
+    virtual string getIndexType() const = 0;
+};

@@ -9,5 +9,35 @@ using namespace std;
 // Entry struct for individual key-value pair
 struct Entry {
     string key;
-    vector<Recipe> recipes;
+    vector<int> ids;
+    Entry* next;
+
+    // constructors
+    Entry(string& k, int id) : key(k), ids({id}), next(nullptr) {}
+
+    Entry(string& k, vector<int>& vec) : key(k), ids(vec), next(nullptr) {}
+    // destructor
+    ~Entry() {
+        delete next;
+    }
+};
+
+class HashMap: public invertedIndex {
+    private:
+        Entry** buckets; // array of Entry* pointers
+        int capacity; // array size
+        int size; // num of entries
+
+        int hashFunction(string& key);
+        void resize();
+    public:
+        HashMap(int initialCap = 16);
+        ~HashMap();
+
+        void insert(string& ingredient, int recipeID);
+        vector<int> find(string& key);
+
+        void buildIndex(vector<Recipe>& recipes) override;
+        vector<int> findRecipes(vector<string>& ingredients) override;
+        string getIndexType() const override;
 }

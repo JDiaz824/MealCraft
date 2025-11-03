@@ -1,7 +1,7 @@
 //Hash map-based Inverted Index data structure, using polymorphism
 int hashMap::hashFunction(string& key) {
     size_t hash = 0;
-    for (char c: hash) {
+    for (char c: key) {
         hash = (hash*31 + c) % capacity;
     }
     return static_cast<int>(hash);
@@ -62,7 +62,9 @@ vector<int> hashMap::find(string& key) {
     return {};
 }
 
-void hashMap::buildINdex(vecotr<Recipe>& recipes) {
-    cout << "Buidling Map Index..." << endl;
-
+void hashMap::buildIndex(vecotr<Recipe>& recipes) {
+    cout << "Building Map Index..." << endl;
+    for (auto& element: recipes) {
+        
+    }
 }

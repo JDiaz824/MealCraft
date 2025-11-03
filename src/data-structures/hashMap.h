@@ -43,4 +43,4 @@ class HashMap: public invertedIndex {
         void buildIndex(vector<Recipe>& recipes) override;
         vector<int> findRecipes(vector<string>& ingredients) override;
         string getIndexType() const override;
-}
+};

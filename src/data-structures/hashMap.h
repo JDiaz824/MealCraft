@@ -31,12 +31,15 @@ class HashMap: public invertedIndex {
         int hashFunction(string& key);
         void resize();
     public:
+        // Constructor/Deconstructor
         HashMap(int initialCap = 16);
         ~HashMap();
 
+        // hashMap specific functions
         void insert(string& ingredient, int recipeID);
         vector<int> find(string& key);
 
+        // inherited functions
         void buildIndex(vector<Recipe>& recipes) override;
         vector<int> findRecipes(vector<string>& ingredients) override;
         string getIndexType() const override;

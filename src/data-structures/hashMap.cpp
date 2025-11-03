@@ -65,9 +65,4 @@ vector<int> hashMap::find(string& key) {
 void hashMap::buildINdex(vecotr<Recipe>& recipes) {
     cout << "Buidling Map Index..." << endl;
 
-    for (auto& recipe: recipes) {
-        for (string& ingredient: recipe.getIngredients()) {
-            insert(ingredient)
-        } 
-    }
 }

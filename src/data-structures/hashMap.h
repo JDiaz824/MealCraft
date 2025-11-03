@@ -32,7 +32,7 @@ class HashMap: public invertedIndex {
         void resize();
     public:
         // Constructor/Deconstructor
-        HashMap(int initialCap = 16);
+        HashMap(int initialCap = 16) : capacity(initialCap) {};
         ~HashMap();
 
         // hashMap specific functions

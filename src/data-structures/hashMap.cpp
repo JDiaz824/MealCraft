@@ -1,5 +1,24 @@
 //Hash map-based Inverted Index data structure, using polymorphism
-int hashMap::hashFunction(string& key) {
+HashMap::HashMap(int initialCap) : capacity(initialCap), size(0) {
+    buckets = new Entry*[capacity];
+    for (int i = 0l i < capacity; i++) {
+        buckets[i] = nullptr;
+    }
+}
+
+HashMap::~HashMap() {
+    for (int i = 0; i < capacity; i++) {
+        Entry* current = buckets[i];
+        while (current) {
+            Entry* temp = current;
+            current = current-next;
+            delete temp;
+        }
+    }
+    delete[] buckets;
+}
+
+int HashMap::hashFunction(string& key) {
     size_t hash = 0;
     for (char c: key) {
         hash = (hash*31 + c) % capacity;
@@ -7,7 +26,7 @@ int hashMap::hashFunction(string& key) {
     return static_cast<int>(hash);
 }
 
-void hashMap::resize() {
+void HashMap::resize() {
     int oldCapacity = capacity;
     capacity *= 2;
     Entry** newBuckets = new Entry*[capacity]();
@@ -27,7 +46,7 @@ void hashMap::resize() {
     buckets = newBuckets;
 }
 
-void hashMap::insert(string& key, int value) {
+void HashMap::insert(string& key, int value) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
 
@@ -49,7 +68,7 @@ void hashMap::insert(string& key, int value) {
     }
 }
 
-vector<int> hashMap::find(string& key) {
+vector<int> HashMap::find(string& key) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
     
@@ -62,9 +81,14 @@ vector<int> hashMap::find(string& key) {
     return {};
 }
 
-void hashMap::buildIndex(vecotr<Recipe>& recipes) {
-    cout << "Building Map Index..." << endl;
-    for (auto& element: recipes) {
-        
+void HashMap::buildIndex(const vector<Recipe>& recipes) {
+    cout << "Building Map Index..." << '\n';
+    for (const auto& recipe: recipes) {
+        for (const auto& ingredient: recipe.getIngredients()) {
+            insert(ingredient, recipe.getRecipeNum());
+        }
     }
+    cout << "Map Index Built!" << '\n';
 }
+
+vector<int> HashMap::findRecipes(const vector<)

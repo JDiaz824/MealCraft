@@ -18,7 +18,7 @@ void trie::clear(trieNode* node){
     if(node == nullptr){
         return;
     }
-    
+
     for(auto& child : node->children){
         clear(child.second);
     }

@@ -1,5 +1,3 @@
 data/RecipeNLG_dataset.csv
 .vscode/tasks.json
 .vscode/c_cpp_properties.json
-/src/trie.cpp
-/src/trie.h

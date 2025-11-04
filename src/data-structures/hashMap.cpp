@@ -87,7 +87,8 @@ void HashMap::insert(string& key, int value) {
 }
 
 /**
- * Retrieves list of recipe IDs
+ * Retrieves list of recipe IDs based on key (ingredient)
+ * Returns empty vector if ingredient is not found
  */
 vector<int> HashMap::find(string& key) {
     int index = hashFunction(key);
@@ -101,6 +102,10 @@ vector<int> HashMap::find(string& key) {
     return {};
 }
 
+/**
+ * Processes list of recipes to build HashMap<string, vector<int>>,
+ * mapping each ingredient to all recipe IDs associated with it
+ */
 void HashMap::buildIndex(const vector<Recipe>& recipes) {
     cout << "Building Map Index..." << '\n';
     for (const auto& recipe: recipes) {
@@ -108,17 +113,41 @@ void HashMap::buildIndex(const vector<Recipe>& recipes) {
             insert(ingredient, recipe.getRecipeNum());
         }
     }
-    cout << "Map Index Built!" << '\n';
+    cout << "Hash Map Index Built!" << '\n';
 }
 
-// finds recipe that are common to all items in "ingredients" vector
+/**
+ * Given a list of ingredients, returns a vector of recipe IDs containing all ingredients
+ */
 vector<int> HashMap::findRecipes(const vector<string>& ingredients) {
     if (ingredients.empty()) {
         return {};
     }
-    set<int> commonRecipes;
 
-    for (auto& i: ingredients) {
-        set<int> currentRecipes()
+    // get all recipe IDs of first ingredient and insert them into a set
+    vector<int> intialRecipes = find(ingredients[0]);
+    unordered_set<int> commonRecipes(intialRecipes.begin(), intialRecipes.end());
+
+    // only get common reciep IDs
+    for (int i = 1; i < ingredients.size(); i++) {
+        vector<int> temp = find(ingredients[i]);
+        unordered_set<int> currentRecipes(temp.begin(), temp.end());
+        for (auto it = commonRecipes.begin(); it != commonRecipes.end();) {
+            if (currentRecipes.find(*it) == currentRecipes.end()) {
+                it = commonRecipes.erase(it);
+            }
+            else {
+                ++it;
+            }
+        }
     }
+    vector<int> recipeList(commonRecipes.begin(), commonRecipes.end());
+    return recipeList;
+}
+
+/**
+ * Returns index type
+ */
+string HashMap::getIndexType() const {
+    return "Hash Map";
 }

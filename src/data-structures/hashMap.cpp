@@ -1,6 +1,8 @@
 //Hash map-based Inverted Index data structure, using polymorphism
+#include "hashMap.h"
 #include <unordered_set>
 
+using namespace std;
 /**
  * Constructor with intialCap = 16
  */

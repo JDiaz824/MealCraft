@@ -25,8 +25,8 @@ struct Entry {
 class HashMap: public invertedIndex {
     private:
         Entry** buckets; // array of Entry* pointers
-        int capacity; // array size
-        int size; // num of entries
+        size_t capacity; // array size
+        size_t size; // num of entries
 
         int hashFunction(string& key);
         void resize();

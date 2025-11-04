@@ -1,4 +1,9 @@
 //Hash map-based Inverted Index data structure, using polymorphism
+#include <unordered_set>
+
+/**
+ * Constructor with intialCap = 16
+ */
 HashMap::HashMap(int initialCap) : capacity(initialCap), size(0) {
     buckets = new Entry*[capacity];
     for (int i = 0l i < capacity; i++) {
@@ -6,6 +11,9 @@ HashMap::HashMap(int initialCap) : capacity(initialCap), size(0) {
     }
 }
 
+/**
+ * Destructor
+ */
 HashMap::~HashMap() {
     for (int i = 0; i < capacity; i++) {
         Entry* current = buckets[i];
@@ -18,6 +26,9 @@ HashMap::~HashMap() {
     delete[] buckets;
 }
 
+/**
+ * Calculates hash value
+ */
 int HashMap::hashFunction(string& key) {
     size_t hash = 0;
     for (char c: key) {
@@ -26,6 +37,9 @@ int HashMap::hashFunction(string& key) {
     return static_cast<int>(hash);
 }
 
+/**
+ * Doubles capacity of bucket array for resizing
+ */
 void HashMap::resize() {
     int oldCapacity = capacity;
     capacity *= 2;
@@ -46,6 +60,10 @@ void HashMap::resize() {
     buckets = newBuckets;
 }
 
+/**
+ * Inserts a key-value pair into the hash map
+ * Can trigger resize() if capacity exceeds load factor (0.75)
+ */
 void HashMap::insert(string& key, int value) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
@@ -68,10 +86,12 @@ void HashMap::insert(string& key, int value) {
     }
 }
 
+/**
+ * Retrieves list of recipe IDs
+ */
 vector<int> HashMap::find(string& key) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
-    
     while (current) {
         if (current->key == key) {
             return current->ids;
@@ -91,4 +111,14 @@ void HashMap::buildIndex(const vector<Recipe>& recipes) {
     cout << "Map Index Built!" << '\n';
 }
 
-vector<int> HashMap::findRecipes(const vector<)
+// finds recipe that are common to all items in "ingredients" vector
+vector<int> HashMap::findRecipes(const vector<string>& ingredients) {
+    if (ingredients.empty()) {
+        return {};
+    }
+    set<int> commonRecipes;
+
+    for (auto& i: ingredients) {
+        set<int> currentRecipes()
+    }
+}

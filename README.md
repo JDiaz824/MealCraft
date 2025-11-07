@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="980" height="130" alt="MealCraft Banner" src="https://github.com/user-attachments/assets/ded77e8a-728f-4f19-8d62-00afbcd670f1" />
+  <img width="980" height="130" alt="MealCraft Banner" src="https://github.com/user-attachments/assets/ded77e8a-728f-4f19-8d62-00afbcd670f1" />
 </p>
 &nbsp;
 <p align="center">
-  <img width="714" height="74" alt="Find Recipes By Ingredient" src="https://github.com/user-attachments/assets/b9adf012-e13d-4531-a4b3-cff2d70beb3d" />
+  <img width="714" height="74" alt="Find Recipes By Ingredient" src="https://github.com/user-attachments/assets/b9adf012-e13d-4531-a4b3-cff2d70beb3d" />
 </p>
 
 ## About The Project
@@ -25,9 +25,9 @@ This project also serves as a technical comparison between two inverted index da
 * **Core Language:** C++14
 * **Build System:** CMake
 * **Core Data Structures:**
-    * Custom `HashMap` class
-    * Custom `Trie` class
-    * C++ Standard Library (vector, map, set)
+  - Custom `HashMap` class
+    - Custom `Trie` class
+    - C++ Standard Library (vector, map, set)
 * **Data Parsing:** `fstream` and `sstream` for CSV processing.
 
 ---
@@ -41,41 +41,41 @@ To get a local copy up and running, follow these steps.
 You will need a C++ compiler (like g++ or clang) and CMake installed on your system.
 
 * **CMake**
-    ```sh
-    # Example on macOS with Homebrew
-    brew install cmake
-    ```
+    ```sh
+    # Example on macOS with Homebrew
+    brew install cmake
+    ```
 
 ### 1. Download the Data
 
 This project uses the **RecipeNLG** dataset, which is too large to store in the repository.
 
-1.  Go to the Kaggle dataset page: [RecipeNLG Dataset](https://www.kaggle.com/datasets/paultimothymooney/recipenlg?resource=download)
-2.  Download the archive and extract the file `RecipeNLG_dataset.csv`.
-3.  Place this file inside the `data/` directory in the root of the project. Your project structure should look like this:
+1.  Go to the Kaggle dataset page: [RecipeNLG Dataset](https://www.kaggle.com/datasets/paultimothymooney/recipenlg?resource=download)
+2.  Download the archive and extract the file `RecipeNLG_dataset.csv`.
+3.  Place this file inside the `data/` directory in the root of the project. Your project structure should look like this:
 
-    ```
-    MealCraft/
-    ├── data/
-    │   ├── RecipeNLG_dataset.csv  <-- PLACE FILE HERE
-    │   └── README.md
-    ├── src/
-    ├── CMakeLists.txt
-    └── README.md
-    ```
+    ```
+    MealCraft/
+    ├── data/
+    │   ├── RecipeNLG_dataset.csv  <-- PLACE FILE HERE
+    │   └── README.md
+    ├── src/
+    ├── CMakeLists.txt
+    └── README.md
+    ```
 
 ### 2. Clone the Repo
 
-    ```sh
-    git clone https://github.com/your-username/MealCraft.git
-    cd MealCraft
-    ```
+    ```sh
+    git clone [https://github.com/your-username/MealCraft.git](https://github.com/your-username/MealCraft.git)
+    cd MealCraft
+    ```
 
 ### 3. Build with CMake
 
 We use an out-of-source build, which is standard practice for CMake projects.
 
-    ```
+    ```sh
     # 1. Create a build directory
     mkdir build
 
@@ -91,7 +91,7 @@ We use an out-of-source build, which is standard practice for CMake projects.
     
     # On Windows (or cross-platform)
     cmake --build .
-    ```
+    ```
 
 This will create an executable named `MealCraft` inside the `build/` directory.
 
@@ -101,17 +101,17 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 
 Once built, you can run the application from the `build/` directory.
 
-    ```
+    ```sh
     ./MealCraft
-    ```
+    ```
 
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 
-1.  Prompt you to choose the data structure to use (**Trie** or **Hash Map**).
-2.  Build the recipe index from the `.csv` file (this may take a moment).
-3.  Prompt you to enter ingredients.
-4.  Display a list of recipes that can be made using *all* the ingredients you provided.
-5.  Allow you to select a recipe by its ID to see the full instructions.
+1.  Prompt you to choose the data structure to use (**Trie** or **Hash Map**).
+2.  Build the recipe index from the `.csv` file (this may take a moment).
+3.  Prompt you to enter ingredients.
+4.  Display a list of recipes that can be made using *all* the ingredients you provided.
+5. S  Allow you to select a recipe by its ID to see the full instructions.
 
 ---
 

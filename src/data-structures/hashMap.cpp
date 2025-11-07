@@ -8,7 +8,7 @@ using namespace std;
  */
 HashMap::HashMap(int initialCap) : capacity(initialCap), size(0) {
     buckets = new Entry*[capacity];
-    for (int i = 0l i < capacity; i++) {
+    for (int i = 0; i < capacity; i++) {
         buckets[i] = nullptr;
     }
 }
@@ -21,7 +21,7 @@ HashMap::~HashMap() {
         Entry* current = buckets[i];
         while (current) {
             Entry* temp = current;
-            current = current-next;
+            current = current->next;
             delete temp;
         }
     }
@@ -31,7 +31,7 @@ HashMap::~HashMap() {
 /**
  * Calculates hash value
  */
-int HashMap::hashFunction(string& key) {
+int HashMap::hashFunction(const string& key) {
     size_t hash = 0;
     for (char c: key) {
         hash = (hash*31 + c) % capacity;
@@ -66,7 +66,7 @@ void HashMap::resize() {
  * Inserts a key-value pair into the hash map
  * Can trigger resize() if capacity exceeds load factor (0.75)
  */
-void HashMap::insert(string& key, int value) {
+void HashMap::insert(const string& key, int value) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
 
@@ -92,7 +92,7 @@ void HashMap::insert(string& key, int value) {
  * Retrieves list of recipe IDs based on key (ingredient)
  * Returns empty vector if ingredient is not found
  */
-vector<int> HashMap::find(string& key) {
+vector<int> HashMap::find(const string& key) {
     int index = hashFunction(key);
     Entry* current = buckets[index];
     while (current) {
@@ -108,10 +108,10 @@ vector<int> HashMap::find(string& key) {
  * Processes list of recipes to build HashMap<string, vector<int>>,
  * mapping each ingredient to all recipe IDs associated with it
  */
-void HashMap::buildIndex(const vector<Recipe>& recipes) {
+void HashMap::buildIndex(vector<Recipe>& recipes) {
     cout << "Building Map Index..." << '\n';
-    for (const auto& recipe: recipes) {
-        for (const auto& ingredient: recipe.getIngredients()) {
+    for (auto& recipe: recipes) {
+        for (auto& ingredient: recipe.getIngredients()) {
             insert(ingredient, recipe.getRecipeNum());
         }
     }

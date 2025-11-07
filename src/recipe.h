@@ -3,6 +3,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -20,7 +21,7 @@ private:
 
 public:
     Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linktoRecipe, string source, vector<string> ingredients);
-
+  
     //getters for each type of data
     const int getRecipeNum() const;
     const string getTitle() const;

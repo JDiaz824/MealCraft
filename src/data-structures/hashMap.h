@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "src/invertedIndex.h"
+#include "data-structures/invertedIndex.h"
 
 using namespace std;
 
@@ -13,9 +13,9 @@ struct Entry {
     Entry* next;
 
     // constructors
-    Entry(string& k, int id) : key(k), ids({id}), next(nullptr) {}
+    Entry(const string& k, int id) : key(k), ids({id}), next(nullptr) {}
 
-    Entry(string& k, vector<int>& vec) : key(k), ids(vec), next(nullptr) {}
+    Entry(const string& k, vector<int>& vec) : key(k), ids(vec), next(nullptr) {}
     // destructor
     ~Entry() {
         delete next;
@@ -28,7 +28,7 @@ class HashMap: public invertedIndex {
         size_t capacity; // array size
         size_t size; // num of entries
 
-        int hashFunction(string& key);
+        int hashFunction(const string& key);
         void resize();
     public:
         // Constructor/Deconstructor
@@ -36,11 +36,11 @@ class HashMap: public invertedIndex {
         ~HashMap();
 
         // hashMap specific functions
-        void insert(string& ingredient, int recipeID);
-        vector<int> find(string& key);
+        void insert(const string& ingredient, int recipeID);
+        vector<int> find(const string& key);
 
         // inherited functions
         void buildIndex(vector<Recipe>& recipes) override;
-        vector<int> findRecipes(vector<string>& ingredients) override;
-        string getIndexType() const override;
+        vector<int> findRecipes(const vector<std::string>& ingredients) override;
+        std::string getIndexType() const override;
 };

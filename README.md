@@ -66,7 +66,7 @@ This project uses the **RecipeNLG** dataset, which is too large to store in the 
 
 ### 2. Clone the Repo
 
-  * 
+   
     ```sh
     git clone https://github.com/your-username/MealCraft.git
     cd MealCraft
@@ -77,22 +77,26 @@ This project uses the **RecipeNLG** dataset, which is too large to store in the 
 
 We use an out-of-source build, which is standard practice for CMake projects.
 
-  *  
+    
     ```
-    # 1. Create a build directory
-    mkdir build
+    1. Create a build directory
+    
+    mkdir build
 
-    # 2. Move into the build directory
-    cd build
+    2. Move into the build directory
+    
+    cd build
 
-    # 3. Configure the project with CMake
-    cmake ..
+    3. Configure the project with CMake
+    
+    cmake ..
 
-    # 4. Compile the project
-    # On Linux/macOS
+    4. Compile the project
+    
+    On Linux/macOS
     make
     
-    # On Windows (or cross-platform)
+    On Windows (or cross-platform)
     cmake --build .
     ```
 
@@ -104,7 +108,7 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 
 Once built, you can run the application from the `build/` directory.
 
-  * 
+   
     ```
     ./MealCraft
     ```

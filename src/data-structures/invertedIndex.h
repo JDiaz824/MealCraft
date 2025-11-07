@@ -1,4 +1,4 @@
-//Inverted Index Interface implementation; used for Hash Map and Trie
+//Inverted Index Interface polymorphism implementation; used for Hash Map and Trie
 
 #pragma once
 

@@ -93,16 +93,17 @@ On Linux/macOS
 make
 
 On Windows (or cross-platform)
-cmake --build .
+cmake --build.
 This will create an executable named MealCraft inside the build/ directory.
 
 ---
 
-### Usage
+## Usage
 
 Once built, you can run the application from the build/ directory.
 
-./MealCraft
+./MealCraft 
+
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 
 1. Prompt you to choose the data structure to use (Trie or Hash Map).
@@ -117,7 +118,7 @@ The program will launch an interactive command-line interface. Based on the proj
 
 ---
 
-### Authors
+## Authors
 
 Johan Diaz: Trie Implementation
 

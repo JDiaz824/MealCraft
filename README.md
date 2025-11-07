@@ -8,23 +8,16 @@
 
 ## About The Project
 
-**MealCraft** is a smart recipe suggestion engine written in C++. It tackles the common challenge of deciding what to cook based on the ingredients you already have at home.
+**MealCraft** is a C++ recipe suggestion engine that finds recipes based on the ingredients you have on hand. It is designed to reduce food waste and make home cooking more efficient.
 
-This project aims to reduce food waste and make home cooking more efficient. Instead of letting food spoil or defaulting to takeout, MealCraft helps you discover recipes you can make right now.
-
-At its core, this project also serves as a technical comparison between two data structures for building an inverted index: a custom **Hash Map** and a custom **Trie**.
+This project also serves as a technical comparison between two inverted index data structures, a custom **Hash Map** and a custom **Trie**, both built from scratch to map ingredients to recipes.
 
 ---
 
-## Features
-
-* **Ingredient-Based Search:** Find recipes by entering a list of available ingredients.
-* **Data Structure Comparison:** Built with two parallel inverted index implementations:
-    * **Hash Map:** A custom-built hash map for fast lookups.
-    * **Trie:** A custom-built trie (prefix tree) for efficient searching.
-* **View Recipe Details:** Allows the user to select a recipe from the search results to view its full details (name, ingredients, and instructions).
-* **Performance Analysis:** The design allows for benchmarking the `buildIndex` and `findRecipes` functions of both data structures.
-
+### Key Features
+* **Ingredient-Based Search:** Find recipes using a list of available ingredients.
+* **Data Structure Comparison:** Implements both a `HashMap` and `Trie` for performance analysis.
+* **Recipe Details:** View full recipe details (ingredients, instructions) from search results.
 ---
 
 ## Built With
@@ -39,7 +32,7 @@ At its core, this project also serves as a technical comparison between two data
 
 ---
 
-## Getting Started
+## Set Up
 
 To get a local copy up and running, follow these steps.
 
@@ -73,55 +66,57 @@ This project uses the **RecipeNLG** dataset, which is too large to store in the 
 
 ### 2. Clone the Repo
 
-git clone [https://github.com/your-username/MealCraft.git](https://github.com/your-username/MealCraft.git)
-cd MealCraft
+    ```sh
+    git clone [https://github.com/your-username/MealCraft.git](https://github.com/your-username/MealCraft.git)
+    cd MealCraft
+    ```
 
 ### 3. Build with CMake
+
 We use an out-of-source build, which is standard practice for CMake projects.
 
-1. Create a build directory
-mkdir build
+    ```sh
+    # 1. Create a build directory
+    mkdir build
 
-2. Move into the build directory
-cd build
+    # 2. Move into the build directory
+    cd build
 
-3. Configure the project with CMake
-cmake ..
+    # 3. Configure the project with CMake
+    cmake ..
 
-4. Compile the project
-On Linux/macOS
-make
+    # 4. Compile the project
+    # On Linux/macOS
+    make
+    
+    # On Windows (or cross-platform)
+    cmake --build .
+    ```
 
-On Windows (or cross-platform)
-cmake --build.
-This will create an executable named MealCraft inside the build/ directory.
+This will create an executable named `MealCraft` inside the `build/` directory.
 
 ---
 
 ## Usage
 
-Once built, you can run the application from the build/ directory.
+Once built, you can run the application from the `build/` directory.
 
-./MealCraft 
+    ```sh
+    ./MealCraft
+    ```
 
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 
-1. Prompt you to choose the data structure to use (Trie or Hash Map).
-
-2. Build the recipe index from the .csv file (this may take a moment).
-
-3. Prompt you to enter ingredients.
-
-4. Display a list of recipes that can be made using all the ingredients you provided.
-
-5. Allow you to select a recipe by its ID to see the full instructions.
+1.  Prompt you to choose the data structure to use (**Trie** or **Hash Map**).
+2.  Build the recipe index from the `.csv` file (this may take a moment).
+3.  Prompt you to enter ingredients.
+4.  Display a list of recipes that can be made using *all* the ingredients you provided.
+5.  Allow you to select a recipe by its ID to see the full instructions.
 
 ---
 
 ## Authors
 
-Johan Diaz: Trie Implementation
-
-Nathaniel Flores: Hash Map Implementation
-
-Patrick Ouano: Data & Core Logic
+* **Johan Diaz:** Trie Implementation
+* **Nathaniel Flores:** Hash Map Implementation
+* **Patrick Ouano:** Data & Core Logic

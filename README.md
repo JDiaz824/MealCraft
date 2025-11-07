@@ -79,20 +79,20 @@ cd MealCraft
 ### 3. Build with CMake
 We use an out-of-source build, which is standard practice for CMake projects.
 
-# 1. Create a build directory
+1. Create a build directory
 mkdir build
 
-# 2. Move into the build directory
+2. Move into the build directory
 cd build
 
-# 3. Configure the project with CMake
+3. Configure the project with CMake
 cmake ..
 
-# 4. Compile the project
-# On Linux/macOS
+4. Compile the project
+On Linux/macOS
 make
 
-# On Windows (or cross-platform)
+On Windows (or cross-platform)
 cmake --build .
 This will create an executable named MealCraft inside the build/ directory.
 
@@ -105,22 +105,22 @@ Once built, you can run the application from the build/ directory.
 ./MealCraft
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 
-# 1. Prompt you to choose the data structure to use (Trie or Hash Map).
+1. Prompt you to choose the data structure to use (Trie or Hash Map).
 
-# 2. Build the recipe index from the .csv file (this may take a moment).
+2. Build the recipe index from the .csv file (this may take a moment).
 
-# 3. Prompt you to enter ingredients.
+3. Prompt you to enter ingredients.
 
-# 4. Display a list of recipes that can be made using all the ingredients you provided.
+4. Display a list of recipes that can be made using all the ingredients you provided.
 
-# 5. Allow you to select a recipe by its ID to see the full instructions.
+5. Allow you to select a recipe by its ID to see the full instructions.
 
 ---
 
 ### Authors
 
-# Johan Diaz: Trie Implementation
+Johan Diaz: Trie Implementation
 
-# Nathaniel Flores: Hash Map Implementation
+Nathaniel Flores: Hash Map Implementation
 
-# Patrick Ouano: Data & Core Logic
+Patrick Ouano: Data & Core Logic

@@ -1,6 +1,0 @@
-[submodule "frontend/imgui-sfml"]
-	path = frontend/imgui-sfml
-	url = https://github.com/eliasdaler/imgui-sfml
-[submodule "frontend/imgui"]
-	path = frontend/imgui
-	url = https://github.com/ocornut/imgui.git

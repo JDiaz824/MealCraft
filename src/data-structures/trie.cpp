@@ -44,19 +44,7 @@ void trie::insert(string ingredient, int recipeNum){
     //Marks ingredient as valid when the end is reached
     current->isWord = true;
 
-    //Checks for duplicate recipeNums
-    bool found = false;
-    for(int num : current->recipeNums){
-        if(num == recipeNum){
-            found = true;
-            break;
-        }
-    }
-
-    //Pushes back recipeNum to ingredient if unique
-    if(!found){
-        current->recipeNums.push_back(recipeNum);
-    }
+    current->recipeNums.insert(recipeNum);
 }
 
 //Helper function for finding an ingredient's end node

@@ -3,36 +3,48 @@
 #include <fstream> 
 #include <sstream> 
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
 
-// helper function to parse strings 
-vector<string> RecipeLoader::parseStringList(const string& stringList){
+// Parses a string that is a list of quoted items (e.g., ["item1", "item2"])
+// This handles commas inside the quotes
+vector<string> RecipeLoader::parseList(const string& stringList) {
     vector<string> items;
-
-    // checks if string is too short 
-    if(stringList.length() < 3){
-        return items; 
+    // Return empty if the string is too short to be a list
+    if (stringList.length() < 3) {
+        return items;
     }
 
-    // gets rid of the opening and closing bracket []
-    string recipes = stringList.substr(1, stringList.length() - 2);
+    // Gets rid of the opening and closing bracket []
+    string content = stringList.substr(1, stringList.length() - 2);
+    
+    stringstream ss(content);
+    char c;
+    string current_item;
+    bool in_quotes = false; // Tracks if we are inside a quoted item
 
-    // uses stringstream to split by commas
-    stringstream ss(recipes);
-    string item; 
-    while(getline(ss, item, ',')){
-        // cleans up item string by getting rid of quotes 
-        size_t first = item.find_first_of('\'');
-        size_t last = item.find_last_of('\'');
-        
-        // if both quotes are found, the text between the quotes are fixed and returned as a vector
-        if(first != string::npos && last != string::npos && first != last){
-            string fixedItem = item.substr(first + 1, last - first - 1);
-            items.push_back(fixedItem);
+    // Read the string character by character
+    while (ss.get(c)) {
+        if (c == '"') {
+            // Check for an escaped quote (e.g., "")
+            if (in_quotes && ss.peek() == '"') {
+                current_item += '"'; // Add a single quote
+                ss.get(); // Consume the peeked quote
+            } else {
+                // This is a real quote, toggle the state
+                in_quotes = !in_quotes;
+                if (!in_quotes) {
+                    // Just finished a quoted item, add it
+                    items.push_back(current_item);
+                    current_item.clear(); // Clear for the next item
+                }
+            }
+        // Only add characters if we are inside quotes
+        } else if (in_quotes) {
+            current_item += c;
         }
     }
-    return items; 
+    return items;
 }
 
 // loads all recipes from the csv file
@@ -43,67 +55,77 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
     // checks if file is opened
     if(!file.is_open()){
         cerr << "Error: Could not open file: " << csvPath << endl;
-        return allRecipes;
+        return allRecipes; // Return empty vector
     }
 
-    string line; 
-
+    string line;
+    // Read and discard the header line (title, ingredients, etc.)
     getline(file, line);
 
-    // handles main loop and reads from file and stores in line string
+    int recipeCount = 0;
+
+    // Read the file line by line
     while(getline(file, line)){
         stringstream ss(line);
-        string word;
+        vector<string> row; // Will hold all cells for this line
+        string cell;
+        bool in_quotes = false;
+        char c;
 
-        vector<string> row;
-
-        // handles commas inside the quotes by using stringstream
-        while(getline(ss, word, ',')){
-            if (!word.empty() && word.front() == '"' && word.back() != '"') {
-                
-                string nextWord;
-                // adds the next parts until we find closing quote
-                while (getline(ss, nextWord, ',')) {
-                    word = word + "," + nextWord; 
-                    if (!nextWord.empty() && nextWord.back() == '"') {
-                        break; 
-                    }
-                }
+    // This state machine parses a full CSV row
+    // It correctly handles commas inside quoted cells
+    while (ss.get(c)) {
+        if (c == '"') {
+            // Check for an escaped quote ("")
+            if (in_quotes && ss.peek() == '"') {
+                cell += '"';
+                ss.get(); // Consume the peeked quote
+            } else {
+                // This is a regular quote, toggle the state
+                in_quotes = !in_quotes;
             }
-
-            // removes the surrounding quotes
-            if (!word.empty() && word.front() == '"' && word.back() == '"') {
-                word = word.substr(1, word.length() - 2);
-            }
-            
-            row.push_back(word);
+        // A comma outside quotes is a cell separator
+        } else if (c == ',' && !in_quotes) {
+            row.push_back(cell);
+            cell.clear();
+        } else {
+            // Any other character
+            cell += c;
         }
-// try and catch block to help prevent program from crashing
-// converts all data from row vector 
-try {
-            int recipeNum = stoi(row[0]);
-            
-            string title = row[1];
+    }
+    // Add the last cell to the row
+    row.push_back(cell);
 
-            vector<string> ingredientsExact = parseStringList(row[2]);
-            vector<string> instructions = parseStringList(row[3]);
+    // Use try/catch to safely convert data and skip bad lines
+    try {
+            int recipeNum = stoi(row[0]);
+            string title = row[1];
             
+            // Use the parser for all list columns
+            vector<string> ingredientsExact = parseList(row[2]);
+            vector<string> instructions = parseList(row[3]);
             string link = row[4];
             string source = row[5];
-        
-            vector<string> ingredients = parseStringList(row[6]);
+            vector<string> ingredients = parseList(row[6]);
 
-            // pushes recipes back to main vector 
+            // Add the new Recipe object to our master list
             allRecipes.emplace_back(recipeNum, title, ingredientsExact, instructions, link, source, ingredients);
 
+            recipeCount++;
+
+            // Limit num of recipes for faster testing (optional)
+            if(recipeCount >= 100000){
+                break;
+            }
+
         } catch (const std::exception& e) {
-            // if try block failed, prints an error
+            // If stoi() or other parsing fails, log it and continue
             cerr << "Error parsing line, skipping: " << line << endl;
         }
     }
 
-    file.close(); 
+    file.close();
     
     cout << "Successfully loaded " << allRecipes.size() << " recipes." << endl;
-    return allRecipes; 
+    return allRecipes;
 }

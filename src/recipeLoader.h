@@ -12,8 +12,6 @@ class RecipeLoader{
         // loads all recipes from csv file
         vector<Recipe> loadRecipes(const string& csvPath);
     private:
-        // helper function to parse raw vector of strings 
-        vector<string> parseStringList(const string& stringList);
-
-        vector<string> parseQuotedList(const string& stringList);
+        // helper function to parse items from csv
+        vector<string> parseList(const string& stringList);
 };

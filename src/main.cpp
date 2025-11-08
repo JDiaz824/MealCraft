@@ -4,7 +4,6 @@
 #include <limits> 
 #include <cctype>   
 
-
 #include "recipeLoader.h"     
 #include "recipe.h"           
 #include "invertedIndex.h"    
@@ -248,8 +247,8 @@ int main() {
     invertedIndex* mapIndex = new HashMap();
     mapIndex->buildIndex(allRecipes); 
 
-    // invertedIndex* trieIndex = new trie();
-    // trieIndex->buildIndex(allRecipes); 
+    invertedIndex* trieIndex = new trie();
+    trieIndex->buildIndex(allRecipes); 
     
     cout << "All systems ready!" << endl;
 
@@ -266,7 +265,7 @@ int main() {
             runRecipeFinder(mapIndex, allRecipes);
         }
         else if (choice == 2) {
-            // runRecipeFinder(trieIndex, allRecipes);
+            runRecipeFinder(trieIndex, allRecipes);
         }
         else if (choice == 3) {
             runBenchmarks(csvPath);
@@ -278,7 +277,7 @@ int main() {
     }
 
     delete mapIndex;
-    // delete trieIndex;
+    delete trieIndex;
 
     return 0;
 }

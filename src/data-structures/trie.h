@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <set>
 #include "..\recipe.h"
 #include "invertedIndex.h"
 
@@ -14,7 +15,7 @@ class trie : public invertedIndex{
     struct trieNode{
         map<char, trieNode*> children;
         bool isWord;
-        vector<int> recipeNums;
+        set<int> recipeNums;
         trieNode(){
             isWord = false;
         }

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Recipe::Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linktoRecipe, string source, vector<string> ingredients){
+Recipe::Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linkToRecipe, string source, vector<string> ingredients){
     this->recipeNum = recipeNum;
     this->title = title;
     this->ingredientsExact = ingredientsExact;

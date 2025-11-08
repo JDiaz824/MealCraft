@@ -14,4 +14,6 @@ class RecipeLoader{
     private:
         // helper function to parse raw vector of strings 
         vector<string> parseStringList(const string& stringList);
+
+        vector<string> parseQuotedList(const string& stringList);
 };

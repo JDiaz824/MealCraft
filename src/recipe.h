@@ -18,7 +18,7 @@ private:
     vector<string> ingredients; // raw ingredients (ex. eggs)
 
 public:
-    Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linktoRecipe, string source, vector<string> ingredients);
+    Recipe(int recipeNum, string title, vector<string> ingredientsExact, vector<string> instructions, string linkToRecipe, string source, vector<string> ingredients);
     const int getRecipeNum() const;
     const string getTitle() const;
     const vector<string> getIngredientsExact() const;

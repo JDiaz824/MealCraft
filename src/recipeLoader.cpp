@@ -80,7 +80,7 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
     // Read and discard the header line (title, ingredients, etc.)
     getline(file, line);
 
-    // int recipeCount = 0;
+    int recipeCount = 0;
 
     // Read the file line by line
     while(getline(file, line)){
@@ -129,7 +129,7 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
             // Add the new Recipe object to our master list
             allRecipes.emplace_back(recipeNum, title, ingredientsExact, instructions, link, source, ingredients);
 
-
+            recipeCount++;
             // Display progress at intervals
             if (recipeCount >= progress25 && !isPrinted25) {
                 cout << "[===.............] 25% loaded" << endl;

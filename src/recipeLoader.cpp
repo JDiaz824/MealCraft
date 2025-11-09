@@ -52,12 +52,13 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
     vector<Recipe> allRecipes;
     ifstream file(csvPath);
 
+    // checks if file is opened
     if(!file.is_open()){
         cerr << "Error: Could not open file: " << csvPath << endl;
         return allRecipes;
     }
 
-    // COUNT LINES (excluding header)
+    // Count lines excluding header (for progress bar)
     int totalLines = 0;
     string tempLine;
     getline(file, tempLine); // discard header
@@ -67,10 +68,6 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
     file.clear();
     file.seekg(0);
     
-    string line;
-    getline(file, line); // discard header again
-    int recipeCount = 0;
-
     int progress25 = 250000;
     int progress50 = 500000;
     int progress75 = 750000;
@@ -78,6 +75,14 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
     bool isPrinted25 = false;
     bool isPrinted50 = false;
     bool isPrinted75 = false;
+
+    string line;
+    // Read and discard the header line (title, ingredients, etc.)
+    getline(file, line);
+
+    int recipeCount = 0;
+
+    // Read the file line by line
     while(getline(file, line)){
         stringstream ss(line);
         vector<string> row;
@@ -85,32 +90,43 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
         bool in_quotes = false;
         char c;
 
-        while (ss.get(c)) {
-            if (c == '"') {
-                if (in_quotes && ss.peek() == '"') {
-                    cell += '"';
-                    ss.get();
-                } else {
-                    in_quotes = !in_quotes;
-                }
-            } else if (c == ',' && !in_quotes) {
-                row.push_back(cell);
-                cell.clear();
+        // This state machine parses a full CSV row
+        // It correctly handles commas inside quoted cells
+    while (ss.get(c)) {
+        if (c == '"') {
+            // Check for an escaped quote ("")
+            if (in_quotes && ss.peek() == '"') {
+                cell += '"';
+                ss.get(); // Consume the peeked quote
             } else {
-                cell += c;
+                // This is a regular quote, toggle the state
+                in_quotes = !in_quotes;
             }
+        // A comma outside quotes is a cell separator
+        } else if (c == ',' && !in_quotes) {
+            row.push_back(cell);
+            cell.clear();
+        } else {
+            // Any other character
+            cell += c;
         }
-        row.push_back(cell);
+    }
+    // Add the last cell to the row
+    row.push_back(cell);
 
+    // Use try/catch to safely convert data and skip bad lines
         try {
             int recipeNum = stoi(row[0]);
             string title = row[1];
+
+            // Use the parser for all list columns
             vector<string> ingredientsExact = parseList(row[2]);
             vector<string> instructions = parseList(row[3]);
             string link = row[4];
             string source = row[5];
             vector<string> ingredients = parseList(row[6]);
-
+            
+            // Add the new Recipe object to our master list
             allRecipes.emplace_back(recipeNum, title, ingredientsExact, instructions, link, source, ingredients);
 
             recipeCount++;
@@ -132,10 +148,10 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
                 isPrinted75 = true;
             }
 
-            // Limit recipes to 1 million for testing
-            if (recipeCount >= 1000000){
-                break;
-            }
+            // // Limit num of recipes for faster testing (optional)
+            // if (recipeCount >= 1000000){
+            //     break;
+            // }
 
         } catch (const std::exception& e) {
             cerr << "Error parsing line, skipping: " << line << endl;

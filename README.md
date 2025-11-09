@@ -46,25 +46,7 @@ You will need a C++ compiler (like g++ or clang) and CMake installed on your sys
     brew install cmake
     ```
 
-### 1. Download the Data
-
-This project uses the **RecipeNLG** dataset, which is too large to store in the repository.
-
-1.  Go to the Kaggle dataset page: [RecipeNLG Dataset](https://www.kaggle.com/datasets/paultimothymooney/recipenlg?resource=download)
-2.  Download the archive and extract the file `RecipeNLG_dataset.csv`.
-3.  Place this file inside the `data/` directory in the root of the project. Your project structure should look like this:
-
-    ```
-    MealCraft/
-    ├── data/
-    │   ├── RecipeNLG_dataset.csv  <-- PLACE FILE HERE
-    │   └── README.md
-    ├── src/
-    ├── CMakeLists.txt
-    └── README.md
-    ```
-
-### 2. Clone the Repo
+### 1. Clone the Repo
 
    
     ```sh
@@ -73,13 +55,13 @@ This project uses the **RecipeNLG** dataset, which is too large to store in the 
     ```
 
 
-### 3. Build with CMake
+### 2. Build with CMake
 
 We use an out-of-source build, which is standard practice for CMake projects.
 
     
     ```
-    1. Create a build directory
+    1. Create a build directory inside the project folder
     
     mkdir build
 

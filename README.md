@@ -40,7 +40,7 @@ To get a local copy up and running, follow these steps.
 
 You will need a C++ compiler (like g++ or clang) and CMake installed on your system.
 
-* **CMake**
+**CMake**
     ```
     # Example on macOS with Homebrew
     brew install cmake
@@ -60,28 +60,28 @@ You will need a C++ compiler (like g++ or clang) and CMake installed on your sys
 We use an out-of-source build, which is standard practice for CMake projects.
 
 In terminal:
-    1. Create a build directory inside the project folder
-    ```
-    mkdir build
-    ```
-    2. Move into the build directory
-    ```
-    cd build
-    ```
-    3. Configure the project with CMake
-    ```
-    cmake ..
-    ```
-    4. Compile the project
-    
-    On Linux/macOS
-    ```
-    make
-    ```
-    On Windows (or cross-platform)
-    ```
-    cmake --build
-    ```
+1. Create a build directory inside the project folder
+```
+mkdir build
+```
+2. Move into the build directory
+```
+cd build
+```
+3. Configure the project with CMake
+```
+cmake ..
+```
+4. Compile the project
+
+On Linux/macOS
+```
+make
+```
+On Windows (or cross-platform)
+```
+cmake --build
+```
 
 This will create an executable named `MealCraft` inside the `build/` directory.
 

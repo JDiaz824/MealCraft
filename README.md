@@ -93,11 +93,11 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 
 ## Usage
 
-Once built, you can run the application from the `build/` directory.
+Once built, you can run the application from the `build/` directory
   ```
   ./MealCraft.exe
   ```
-or alternatively...
+or alternatively
   ```
   start MealCraft.exe
   ```

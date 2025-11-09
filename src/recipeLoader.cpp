@@ -148,7 +148,7 @@ vector<Recipe> RecipeLoader::loadRecipes(const string& csvPath){
             }
 
             // // Limit num of recipes for faster testing (optional)
-            // if (recipeCount >= 1000000){
+            // if (recipeCount >= 1000){
             //     break;
             // }
 

@@ -103,7 +103,7 @@ void runRecipeFinder(invertedIndex* index, vector<Recipe>& allRecipes) {
         
         // Add Ingredient
         if (choice == 1) {
-            cout << "\nEnter ingredient name: ";
+            cout << "\nEnter ingredient name (no repeats pls): ";
             string ingredient;
             getline(cin, ingredient); // Use getline to allow spaces
 
@@ -236,8 +236,9 @@ void runBenchmarks(string& csvPath) {
     chrono::duration<double> trieBuildTime = endTrieBuild - startTrieBuild;
     cout << "Trie Build Time:    " << fixed << setprecision(4) << trieBuildTime.count() << " seconds." << endl;
 
+    const int ITERATIONS = 100; // Run each query 1000 times for a stable average
     // Test the average query time
-    cout << "\n--- Average Query Time (1000 iterations) ---" << endl;
+    cout << "\n--- Average Query Time (" << ITERATIONS <<  " iterations) ---" << endl;
     
     // A list of sample queries to test
     vector<vector<string>> testQueries = {
@@ -246,7 +247,7 @@ void runBenchmarks(string& csvPath) {
         {"flour", "sugar", "eggs", "butter", "milk", "vanilla", "salt"} // Long query (baking)
     };
 
-    const int ITERATIONS = 1000; // Run each query 1000 times for a stable average
+
     cout << fixed << setprecision(8); // Use more precision for fast query times
 
     // Loop over each test query

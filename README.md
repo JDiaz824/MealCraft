@@ -72,7 +72,7 @@ cd build
 ```
 cmake ..
 ```
-  ***If you use MinGW, use this:
+  **If you use MinGW, use this:**
   ```
   cmake -G "MinGW Makefiles" ..
   ```

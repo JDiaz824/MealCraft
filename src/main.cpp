@@ -110,8 +110,22 @@ void runRecipeFinder(invertedIndex* index, vector<Recipe>& allRecipes) {
             // "Normalize" the input to lowercase
             string normalized = toLower(ingredient);
             
-            // Add the cleaned-up ingredient to the list
-            if (!normalized.empty()) {
+            // Skip if the user just pressed enter
+            if (normalized.empty()) {
+                continue;
+            }
+
+            // Check if the ingredient is in our database
+            // We do this by searching for it as a single-item list
+            vector<int> validationCheck = index->findRecipes({normalized});
+
+            // If the list is empty, the ingredient isn't valid
+            if (validationCheck.empty()) {
+                cout << "\n'" << normalized << "' is not a valid ingredient. Please try again." << endl;
+            } 
+            // Otherwise, the ingredient is valid
+            else {
+                // Add the cleaned-up ingredient to the list
                 userIngredients.push_back(normalized);
                 cout << "'" << normalized << "' added." << endl;
             }

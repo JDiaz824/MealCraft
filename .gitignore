@@ -12,6 +12,5 @@
 /*.dll
 
 # vscode + misc
-data/RecipeNLG_dataset.csv
 .vscode/tasks.json
 .vscode/c_cpp_properties.json

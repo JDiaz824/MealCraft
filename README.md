@@ -40,7 +40,7 @@ To get a local copy up and running, follow these steps.
 
 You will need a C++ compiler (like g++ or clang) and CMake installed on your system.
 
-**CMake**
+*  **CMake**
     ```
     # Example on macOS with Homebrew
     brew install cmake

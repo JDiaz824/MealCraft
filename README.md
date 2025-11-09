@@ -49,10 +49,10 @@ You will need a C++ compiler (like g++ or clang) and CMake installed on your sys
 ### 1. Clone the Repo
 
    
-    ```
-    git clone https://github.com/your-username/MealCraft.git
-    cd MealCraft
-    ```
+  ```
+  git clone https://github.com/your-username/MealCraft.git
+  cd MealCraft
+  ```
 
 
 ### 2. Build with CMake

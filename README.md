@@ -84,7 +84,7 @@ cmake ..
   ```
   On Windows (or cross-platform)
   ```
-  cmake --build
+  cmake --build .
   ```
 
 This will create an executable named `MealCraft` inside the `build/` directory.

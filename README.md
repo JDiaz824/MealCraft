@@ -41,7 +41,7 @@ To get a local copy up and running, follow these steps.
 You will need a C++ compiler (like g++ or clang) and CMake installed on your system.
 
 * **CMake**
-    ```sh
+    ```
     # Example on macOS with Homebrew
     brew install cmake
     ```
@@ -49,7 +49,7 @@ You will need a C++ compiler (like g++ or clang) and CMake installed on your sys
 ### 1. Clone the Repo
 
    
-    ```sh
+    ```
     git clone https://github.com/your-username/MealCraft.git
     cd MealCraft
     ```

@@ -95,7 +95,7 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 
 Once built, you can run the application from the `build/` directory.
   ```
-  PS C:\Users\..\MealCraft\build ./MealCraft.exe
+  ./MealCraft.exe
   ```
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 

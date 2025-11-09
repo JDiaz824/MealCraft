@@ -89,9 +89,9 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 ## Usage
 
 Once built, you can run the application from the `build/` directory.
-
-.../MealCraft/build ./MealCraft.exe
-
+  ```
+  .../MealCraft/build ./MealCraft.exe
+  ```
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 
 1.  Prompt you to choose the data structure to use (**Trie** or **Hash Map**).

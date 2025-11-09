@@ -74,14 +74,14 @@ cmake ..
 ```
 4. Compile the project
 
-On Linux/macOS
-```
-make
-```
-On Windows (or cross-platform)
-```
-cmake --build
-```
+  On Linux/macOS
+  ```
+  make
+  ```
+  On Windows (or cross-platform)
+  ```
+  cmake --build
+  ```
 
 This will create an executable named `MealCraft` inside the `build/` directory.
 

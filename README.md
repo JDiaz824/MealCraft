@@ -59,27 +59,28 @@ You will need a C++ compiler (like g++ or clang) and CMake installed on your sys
 
 We use an out-of-source build, which is standard practice for CMake projects.
 
-    
+In terminal:
+    1. Create a build directory inside the project folder
     ```
-    1. Create a build directory inside the project folder
-    
-    mkdir build
-
-    2. Move into the build directory
-    
-    cd build
-
+    mkdir build
+    ```
+    2. Move into the build directory
+    ```
+    cd build
+    ```
     3. Configure the project with CMake
-    
-    cmake ..
-
+    ```
+    cmake ..
+    ```
     4. Compile the project
     
     On Linux/macOS
+    ```
     make
-    
-    On Windows (or cross-platform)
-    cmake --build .
+    ```
+    On Windows (or cross-platform)
+    ```
+    cmake --build
     ```
 
 This will create an executable named `MealCraft` inside the `build/` directory.
@@ -90,7 +91,7 @@ This will create an executable named `MealCraft` inside the `build/` directory.
 
 Once built, you can run the application from the `build/` directory.
   ```
-  .../MealCraft/build ./MealCraft.exe
+  PS C:\Users\..\MealCraft\build ./MealCraft.exe
   ```
 The program will launch an interactive command-line interface. Based on the project goals, it will:
 

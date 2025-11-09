@@ -72,6 +72,10 @@ cd build
 ```
 cmake ..
 ```
+  *If you use MinGW, use this:
+  ```
+  cmake -G "MinGW Makefiles" ..
+  ```
 4. Compile the project
 
   On Linux/macOS
